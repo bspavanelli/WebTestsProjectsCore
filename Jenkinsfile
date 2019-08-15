@@ -2,9 +2,9 @@ pipeline {
 	agent  any
 
 	parameters {
-		choice(name: 'plataforma',
-			   choices: 'Both\nAndroid\nIOS',
-			   description: 'In which OS the tests will run? Both, Android or IOS?')
+		choice(name: 'browser',
+			   choices: 'All\nChrome\nFirefox',
+			   description: 'In which browser the tests will run? All, Chrome or Firefox?')
 	}
 
 	options {
@@ -25,7 +25,7 @@ pipeline {
 
 		stage('Run tests') {
 			steps {
-					sh "/Applications/apache-maven-3.6.1/bin/mvn test -Denv.OS=${params.plataforma}"
+					sh "/Applications/apache-maven-3.6.1/bin/mvn test -Denv.BROWSER=${params.browser}"
 			}
 		}
 
